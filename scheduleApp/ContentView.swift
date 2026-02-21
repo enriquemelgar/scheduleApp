@@ -10,34 +10,25 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack {
-            ForEach(topics) { topic in
-                Button(action: showBooksList) {
-                    Label(topic.name, systemImage: topic.icon)
-                }
-            }
+            Topics(topicName: "All", topicIcon: "calendar")
+            Topics(topicName: "Books", topicIcon: "book")
+            Topics(topicName: "Movies/Series", topicIcon: "movieclapper")
+            Topics(topicName: "Games", topicIcon: "gamecontroller")
             Spacer()
-        }.padding(10)
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        }.padding()
     }
 }
 
-struct Topics: Identifiable {
-    let id = UUID()
-    var name: String
-    var icon: String
-}
+struct Topics: View {
+    let topicName: String
+    let topicIcon: String
 
-var topics = [
-    Topics(name: "Books", icon: "book"),
-    Topics(name: "Movies/Series", icon: "movieclapper"),
-    Topics(name: "Games", icon: "gamecontroller")
-]
+    var body: some View {
+        Button(action: showBooksList) {
+            Label(topicName, systemImage: topicIcon).foregroundStyle(Color.green)
+        }
+    }
+}
 
 private func showBooksList() {
     
